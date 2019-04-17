@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<!-- ======================= head ========================== -->
+<title>Titre : {{ title }}</title>
+</head>
+ 
+<body>
+<div>
+{{ data | safe }}
+</div>
+<div id="footer">
+<hr/>
+<a href="{{ url_for('info') }}">home</a>
+ - <a href="{{ url_for('paramurl', number=42) }}">paramurl</a>
+ - <a href="{{ url_for('formulaire') }}">formulaire</a>
+ - <a href="{{ url_for('paramget') }}?login=toto">paramget</a>
+ - <a href="{{ url_for('data_json') }}">data_json</a>
+ - <a href="{{ url_for('redirect_me') }}">redirect_me</a>
+ - <a href="{{ url_for('forbidden') }}">forbidden</a>
+</div>
+</body>
+</html>
