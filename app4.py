@@ -3,37 +3,13 @@ from InstagramAPI import InstagramAPI
 import json
 import fonctions
 from InstagramAPI import InstagramAPI
-from flask_sqlalchemy import SQLAlchemy
+import os
+import mysql.connector as mariadb
 
 MyApp = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
 MyApp.config.from_object('config')
 # To get one variable, tape MyApp.config['MY_VARIABLE']
-MyApp.config['SQLALCHEMY_DATABASE_URI'] = "localhost"
-db = SQLAlchemy(MyApp)
-
-class AddressBook(db.Model):
-    id = db.Column('id', db.Integer, primary_key = True)
-    media_ID = db.Column(db.String(100))
-    media_URL = db.Column(db.String(50))
-    pk = db.Column(db.String(200))
-    username = db.Column(db.String(10))
-    full_name = db.Column(db.String(10))
-    is_private = db.Column(db.boolean())
-    profile_pic_url = db.Column(db.String(200))
-    profile_pic_id = db.Column(db.String(200))
-    is_verified = db.Column(db.boolean())
-
-    def __init__(self, name, city, addr, pin):
-        self.media_ID = media_ID
-        self.city = media_URL
-        self.addr = pk
-        self.pin = username
-        self.media_ID = full_name
-        self.city = is_private
-        self.addr = profile_pic_url
-        self.pin = is_verified
-
 
 @MyApp.route("/")
 def hello():
@@ -57,11 +33,11 @@ def data():
     api = InstagramAPI(user,pwd)
 
     if api.login():
-        api.getSelfUserFeed()
-        data1 = api.LastJson
-        with open("data1.json", "w") as f:
-            f.write(json.dumps(data1, indent=4))
-            #test sur git branche de test
+        api.getMediaLikers(mediaID)
+        data3 = api.LastJson
+        with open("data3.json", "w") as f:
+            f.write(json.dumps(data3, indent=4))
+
         
     return render_template("index.html")
 
@@ -70,6 +46,27 @@ def MediaData():
     url = "https://www.instagram.com/p/BwToC2vnz9H/"
     mediaID = fonctions.get_media_id(url)
 
+    with open("config.json","r") as fichier:
+        conf = json.load(fichier)
+    user = conf["INSTAGRAM"]["USER"]
+    pwd = conf["INSTAGRAM"]["PASSWORD"]
+    username = conf["DB"]["USER"]
+    pwd = conf["DB"]["PASSWORD"]
+    db = conf["DB"]["DATABASE"]
+    api = InstagramAPI(user,pwd)
+
+    if api.login():
+        api.getMediaLikers(mediaID)
+        data3 = api.LastJson
+        with open("data3.json", "w") as f:
+            f.write(json.dumps(data3, indent=4)) 
+        mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
+        cursor = mariadb_connection.cursor()
+        for i in range(10)
+            cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
+            VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (mediaID, url, data3["users"][i]["pk"], data3["users"][i]["username"],data3["users"][i]["full_name"],data3["users"][i]["is_private"],data3["users"][i]["profile_pic_url"],data3["users"][i]["profile_pic_id"],data3["users"][i]["is_verified"],data3["users"][i]["latest_reel_media"]))
+            mariadb_connection.commit()
+        mariadb_connection.close()
 
     return render_template("index.html")
 
