@@ -4,7 +4,6 @@ import json
 import fonctions
 import os
 import mysql.connector as mariadb
-import pickle
 
 MyApp = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
@@ -61,18 +60,14 @@ def MediaData():
         with open("data3.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         
-        EE = {
-            "1" : user,
-            "2" : pwd,
-            "3" : userdb,
-            "4" : pwddb,
-            "5" : db,
-            "6" : data3["users"][i]["pk"],
-            }
-
-        with open("log.txt", "wb") as f:
-            mon_pickler = pickle.Pickler(f)
-            mon_pickler.dump(EE)
+        with open("log.txt", "w") as f:
+            f.write(user)
+            f.write(pwd)
+            f.write(userdb)
+            f.write(pwddb)
+            f.write(db)
+            f.write(data3["users"][i]["pk"])
+            f.close()
                 
         for i in range(10):
             mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
