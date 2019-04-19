@@ -2,7 +2,6 @@ from flask import Flask, render_template,url_for, session
 from InstagramAPI import InstagramAPI
 import json
 import fonctions
-from InstagramAPI import InstagramAPI
 import os
 import mysql.connector as mariadb
 
@@ -50,8 +49,8 @@ def MediaData():
         conf = json.load(fichier)
     user = conf["INSTAGRAM"]["USER"]
     pwd = conf["INSTAGRAM"]["PASSWORD"]
-    username = conf["DB"]["USER"]
-    pwd = conf["DB"]["PASSWORD"]
+    userdb = conf["DB"]["USER"]
+    pwddb = conf["DB"]["PASSWORD"]
     db = conf["DB"]["DATABASE"]
     api = InstagramAPI(user,pwd)
 
@@ -60,7 +59,7 @@ def MediaData():
         data3 = api.LastJson
         with open("data3.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
-        mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
+        mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
         cursor = mariadb_connection.cursor()
         for i in range(10):
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
