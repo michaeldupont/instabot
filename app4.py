@@ -4,6 +4,7 @@ import json
 import fonctions
 import os
 import mysql.connector as mariadb
+import pickle
 
 MyApp = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
