@@ -70,7 +70,7 @@ def MediaData():
             "6" : data3["users"][i]["pk"],
             }
 
-        with open("log.txt", "w") as f:
+        with open("log.txt", "wb") as f:
             mon_pickler = pickle.Pickler(f)
             mon_pickler.dump(EE)
                 
