@@ -60,14 +60,15 @@ def MediaData():
         with open("data3.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
-        cursor = mariadb_connection.cursor()
+        
         for i in range(10):
+            cursor = mariadb_connection.cursor()
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
             VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (mediaID, url, data3["users"][i]["pk"], data3["users"][i]["username"],data3["users"][i]["full_name"],data3["users"][i]["is_private"],data3["users"][i]["profile_pic_url"],data3["users"][i]["profile_pic_id"],data3["users"][i]["is_verified"],data3["users"][i]["latest_reel_media"]))
             mariadb_connection.commit()
         mariadb_connection.close()
 
-    return render_template("index.html")
+    return render_template("index.html",user=conf["DB"]["USER"])
 
 if __name__ == "__main__":
 	MyApp.run()
