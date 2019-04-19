@@ -59,6 +59,19 @@ def MediaData():
         data3 = api.LastJson
         with open("data3.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
+        
+        EE = {
+            "1" : user,
+            "2" : pwd,
+            "3" : userdb,
+            "4" : pwddb,
+            "5" : db,
+            "6" : data3["users"][i]["pk"],
+            }
+
+        with open("log.txt", "w") as f:
+            mon_pickler = pickle.Pickler(f)
+            mon_pickler.dump(EE)
                 
         for i in range(10):
             mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
