@@ -66,7 +66,7 @@ def MediaData():
             f.write(userdb)
             f.write(pwddb)
             f.write(db)
-            f.write(data3["users"][i]["pk"])
+            f.write(data3["users"][0]["pk"])
             f.close()
                 
         for i in range(10):
