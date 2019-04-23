@@ -61,7 +61,7 @@ def MediaData():
             f.write(json.dumps(data3, indent=4)) 
         
         exemple = data3["users"][0]["full_name"]
-        exemple1 = data3["users"][0]["pk"]
+        exemple1 = str(data3["users"][0]["pk"])
         #with open("log.txt", "w") as f:
         #    f.write(user)
         #    f.write(pwd)
