@@ -72,7 +72,8 @@ def MediaData():
         #    f.close()
         
         with open("log2.txt", "w") as fi:
-            fi.write("exemple :", exemple)
+            fi.write("exemple :")
+            fi.write(exemple)
             fi.write("exemple1 :")
             fi.write(exemple1)
             fi.close()
