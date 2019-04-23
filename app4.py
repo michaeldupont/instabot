@@ -82,7 +82,7 @@ def MediaData():
         for i in range(10):
             cursor = mariadb_connection.cursor()
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
-            VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"]),str(data3["users"][i]["is_private"]),str(data3["users"][i]["profile_pic_url"]),str(data3["users"][i]["profile_pic_id"]),str(data3["users"][i]["is_verified"]),str(data3["users"][i]["latest_reel_media"]))
+            VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"]),str(data3["users"][i]["is_private"]),str(data3["users"][i]["profile_pic_url"]),str(data3["users"][i]["profile_pic_id"]),str(data3["users"][i]["is_verified"]),str(data3["users"][i]["latest_reel_media"])))
             mariadb_connection.commit()
         
         mariadb_connection.close()        
