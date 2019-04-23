@@ -60,6 +60,7 @@ def MediaData():
         with open("data3.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         
+        datas = json.load(data3)
         with open("log.txt", "w") as f:
             f.write(user)
             f.write(pwd)
@@ -67,14 +68,14 @@ def MediaData():
             f.write(pwddb)
             f.write(db)
             f.write(mediaID)
-            f.write(data3["users"][0]["pk"])
+            f.write(datas["users"][0]["pk"])
             f.close()
                 
         for i in range(10):
             mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
             cursor = mariadb_connection.cursor()
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
-            VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (mediaID, url, data3["users"][i]["pk"], data3["users"][i]["username"],data3["users"][i]["full_name"],data3["users"][i]["is_private"],data3["users"][i]["profile_pic_url"],data3["users"][i]["profile_pic_id"],data3["users"][i]["is_verified"],data3["users"][i]["latest_reel_media"]))
+            VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (mediaID, url, datas["users"][i]["pk"], datas["users"][i]["username"],datas["users"][i]["full_name"],datas["users"][i]["is_private"],datas["users"][i]["profile_pic_url"],datas["users"][i]["profile_pic_id"],datas["users"][i]["is_verified"],datas["users"][i]["latest_reel_media"]))
             mariadb_connection.commit()
             mariadb_connection.close()        
 
