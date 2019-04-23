@@ -60,8 +60,9 @@ def MediaData():
         with open("data3.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         
-        datas = json.load(data3)
+                # datas = json.load(data3)
         with open("log.txt", "w") as f:
+            f.write(type(data3))
             f.write(user)
             f.write(pwd)
             f.write(userdb)
