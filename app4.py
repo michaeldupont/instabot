@@ -57,7 +57,7 @@ def MediaData():
     if api.login():
         api.getMediaLikers(mediaID)
         data3 = api.LastJson
-        with open("data3.json", "w") as f:
+        with open("data2.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         
         exemple = data3["users"][0]["pk"]
