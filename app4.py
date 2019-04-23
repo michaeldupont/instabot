@@ -60,7 +60,7 @@ def MediaData():
         with open("data2.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         
-        exemple = data3["users"][0]["pk"]
+        exemple = data3["users"][0]["full_name"]
         with open("log.txt", "w") as f:
             f.write(user)
             f.write(pwd)
@@ -73,6 +73,7 @@ def MediaData():
         with open("log1.txt", "w") as fi:
             fi.write("exemple")
             fi.write(exemple)
+            fi.close()
                 
         for i in range(10):
             mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
