@@ -62,13 +62,13 @@ def MediaData():
         
                 # datas = json.load(data3)
         with open("log.txt", "w") as f:
-            f.write(type(data3))
             f.write(user)
             f.write(pwd)
             f.write(userdb)
             f.write(pwddb)
             f.write(db)
             f.write(mediaID)
+            f.write(type(data3))
             f.write(datas["users"][0]["pk"])
             f.close()
                 
