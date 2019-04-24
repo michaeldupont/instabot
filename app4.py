@@ -81,7 +81,7 @@ def MediaData():
                 fi.write(str(mediaID) + "\n")
                 fi.write(str(url) + "\n")
                 fi.write(str(data3["users"][i]["pk"]) + "\n")
-                fi.write(str(data3["users"][i]["username"] + "\n")
+                fi.write(str(data3["users"][i]["username"]) + "\n")
                 fi.write(str(data3["users"][i]["is_private"]) + "\n")            
                 fi.close()
 
