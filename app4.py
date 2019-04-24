@@ -87,17 +87,14 @@ def MediaData():
                 fi.write("ppu \t" + str(data3["users"][i]["profile_pic_url"]) + "\n")
                 fi.write("ppi \t" + str(data3["users"][i]["profile_pic_id"]) + "\n")
                 fi.write("iv \t" + str(data3["users"][i]["is_verified"]) + "\n")
-                fi.write("lrm \t" + str(data3["users"][i]["latest_reel_media"]) + "\n")
                 fi.write("i \t" + i)
                 fi.close()
 
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
-            VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), \
-                 str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"]),str(data3["users"][i]["is_private"]), \
-                     str(data3["users"][i]["profile_pic_url"]),str(data3["users"][i]["profile_pic_id"]), \
-                         str(data3["users"][i]["is_verified"]),str(data3["users"][i]["latest_reel_media"])))
+            VALUES (NULL,%s,%s,%s,%s,%s)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), \
+                 str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"])))
             mariadb_connection.commit()
-            with open("log4.txt", "w") as fi:
+            with open("log4.txt", "a") as fi:
                 fi.write("ok2")
                 fi.close()
         
@@ -107,3 +104,7 @@ def MediaData():
 
 if __name__ == "__main__":
 	MyApp.run()
+
+# ,str(data3["users"][i]["is_private"]), \
+# str(data3["users"][i]["profile_pic_url"]),str(data3["users"][i]["profile_pic_id"]), \
+# str(data3["users"][i]["is_verified"]),str(data3["users"][i]["latest_reel_media"])
