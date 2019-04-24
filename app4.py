@@ -71,19 +71,23 @@ def MediaData():
         #    f.write(mediaID)
         #    f.close()
         
-        with open("log2.txt", "w") as fi:
-            fi.write("exemple :")
-            fi.write(exemple)
-            fi.write("exemple1 :")
-            fi.write(exemple1)
+        mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
+        with open("log4.txt", "w") as fi:
+            fi.write("ok")
             fi.close()
 
-        mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)        
         for i in range(10):
             cursor = mariadb_connection.cursor()
+            with open("log4.txt", "w") as fi:
+                fi.write("ok1")
+                fi.close()
+
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
             VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"]),str(data3["users"][i]["is_private"]),str(data3["users"][i]["profile_pic_url"]),str(data3["users"][i]["profile_pic_id"]),str(data3["users"][i]["is_verified"]),str(data3["users"][i]["latest_reel_media"])))
             mariadb_connection.commit()
+            with open("log4.txt", "w") as fi:
+                fi.write("ok2")
+                fi.close()
         
         mariadb_connection.close()        
 
