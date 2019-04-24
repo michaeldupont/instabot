@@ -71,13 +71,18 @@ def MediaData():
         
         mariadb_connection = mariadb.connect(user=userdb, password=pwddb, database=db)
         with open("log4.txt", "w") as fi:
-            fi.write("ok")
+            fi.write("ok" + '\n')
             fi.close()
 
         for i in range(10):
             cursor = mariadb_connection.cursor()
             with open("log4.txt", "w") as fi:
-                fi.write("ok1")
+                fi.write("ok1" + "\n")
+                fi.write(str(mediaID) + "\n")
+                fi.write(str(url) + "\n")
+                fi.write(str(data3["users"][i]["pk"]) + "\n")
+                fi.write(str(data3["users"][i]["username"] + "\n")
+                fi.write(str(data3["users"][i]["is_private"]) + "\n")            
                 fi.close()
 
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
