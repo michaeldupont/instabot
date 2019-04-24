@@ -69,7 +69,7 @@ def MediaData():
             f.write(mediaID)
             f.close()
         
-        mariadb_connection = mariadb.connect(user=str(userdb), password=str(pwddb), database=str(db))
+        mariadb_connection = mariadb.connect(user=userdb, password=pwddb, database=db)
         with open("log4.txt", "w") as fi:
             fi.write("ok")
             fi.close()
