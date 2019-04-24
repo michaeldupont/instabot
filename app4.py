@@ -78,7 +78,7 @@ def MediaData():
             cursor = mariadb_connection.cursor()
             with open("log4.txt", "a") as fi:
                 fi.write("ok1" + "\n")
-                fi.write("i \t" + i +"\n")
+                fi.write("i \t" + str(i) +"\n")
                 fi.write("mediaID \t" + str(mediaID) + "\n")
                 fi.write("url \t" + str(url) + "\n")
                 fi.write("pk \t" + str(data3["users"][i]["pk"]) + "\n")    
