@@ -60,8 +60,8 @@ def MediaData():
         with open("data2.json", "w") as f:
             f.write(json.dumps(data3, indent=4)) 
         
-        exemple = str(data3["users"][0]["full_name"])
-        exemple1 = str(data3["users"][0]["pk"])
+        #exemple = str(data3["users"][0]["full_name"])
+        #exemple1 = str(data3["users"][0]["pk"])
         with open("log3.txt", "w") as f:
             f.write(userdb + '\n')
             f.write(pwddb + '\n')
@@ -78,6 +78,7 @@ def MediaData():
             cursor = mariadb_connection.cursor()
             with open("log4.txt", "a") as fi:
                 fi.write("ok1" + "\n")
+                fi.write("i \t" + i +"\n")
                 fi.write("mediaID \t" + str(mediaID) + "\n")
                 fi.write("url \t" + str(url) + "\n")
                 fi.write("pk \t" + str(data3["users"][i]["pk"]) + "\n")    
@@ -87,11 +88,10 @@ def MediaData():
                 fi.write("ppu \t" + str(data3["users"][i]["profile_pic_url"]) + "\n")
                 fi.write("ppi \t" + str(data3["users"][i]["profile_pic_id"]) + "\n")
                 fi.write("iv \t" + str(data3["users"][i]["is_verified"]) + "\n")
-                fi.write("i \t" + i)
                 fi.close()
 
             cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
-            VALUES (NULL,%s,%s,%s,%s,%s)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), \
+            VALUES (NULL,%s,%s,%s,%s,%s,NULL,NULL,NULL,NULL,NULL)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), \
                  str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"])))
             mariadb_connection.commit()
             with open("log4.txt", "a") as fi:
