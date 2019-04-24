@@ -62,16 +62,14 @@ def MediaData():
         
         exemple = str(data3["users"][0]["full_name"])
         exemple1 = str(data3["users"][0]["pk"])
-        #with open("log.txt", "w") as f:
-        #    f.write(user)
-        #    f.write(pwd)
-        #    f.write(userdb)
-        #    f.write(pwddb)
-        #    f.write(db)
-        #    f.write(mediaID)
-        #    f.close()
+        with open("log3.txt", "w") as f:
+            f.write(userdb + '\n')
+            f.write(pwddb + '\n')
+            f.write(db + '\n')
+            f.write(mediaID)
+            f.close()
         
-        mariadb_connection = mariadb.connect(user= userdb, password=pwddb, database=db)
+        mariadb_connection = mariadb.connect(user=str(userdb), password=str(pwddb), database=str(db))
         with open("log4.txt", "w") as fi:
             fi.write("ok")
             fi.close()
