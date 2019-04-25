@@ -74,7 +74,7 @@ def MediaData():
             fi.write("ok_ok_ok" + '\n')
             fi.close()
 
-        for user in range(10):
+        for user in range(len(data3["user"])):
 
             with open("log4.txt", "a") as fi:
                 fi.write("users" + "\n")
