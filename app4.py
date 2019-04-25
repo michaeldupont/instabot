@@ -74,29 +74,23 @@ def MediaData():
             fi.write("ok_ok_ok" + '\n')
             fi.close()
 
-        for i in range(10):
-            cursor = mariadb_connection.cursor()
-            with open("log4.txt", "a") as fi:
-                fi.write("ok1" + "\n")
-                fi.write("i \t" + str(i) +"\n")
-                fi.write("mediaID \t" + str(mediaID) + "\n")
-                fi.write("url \t" + str(url) + "\n")
-                fi.write("pk \t" + str(data3["users"][i]["pk"]) + "\n")    
-                fi.write("username \t" + str(data3["users"][i]["username"]) + "\n")
-                fi.write("full_name \t" + str(data3["users"][i]["full_name"]) + "\n")    
-                fi.write("is_private \t" + str(data3["users"][i]["is_private"]) + "\n")
-                fi.write("ppu \t" + str(data3["users"][i]["profile_pic_url"]) + "\n")
-                fi.write("ppi \t" + str(data3["users"][i]["profile_pic_id"]) + "\n")
-                fi.write("iv \t" + str(data3["users"][i]["is_verified"]) + "\n")
-                fi.close()
+        for user in data3["users"] :
+            for cle,valeur in data3["users"][user].items():
 
-            cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
-            VALUES (NULL,%s,%s,%s,%s,%s,NULL,NULL,NULL,NULL,NULL)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), \
-                 str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"])))
-            mariadb_connection.commit()
-            with open("log4.txt", "a") as fi:
-                fi.write("ok2")
-                fi.close()
+                cursor = mariadb_connection.cursor()
+                with open("log4.txt", "a") as fi:
+                    fi.write("cle : valeur" + "\n")
+                    fi.write(str(cle) + str(valeur) + "\n")
+                    fi.close()
+
+                    #cursor.execute("INSERT INTO `medias_likers`(`id`, `media_id`, `media_url`, `pk`, `username`, `fullname`, `isp`, `ppi`,`ppu`,`isv`,`latestmedia`) \
+                    #VALUES (NULL,%s,%s,%s,%s,%s,NULL,NULL,NULL,NULL,NULL)", (str(mediaID), str(url), str(data3["users"][i]["pk"]), \
+                    #    str(data3["users"][i]["username"]),str(data3["users"][i]["full_name"])))
+                    #mariadb_connection.commit()
+            
+                    with open("log4.txt", "a") as fi:
+                        fi.write("ok2")
+                        fi.close()
         
         mariadb_connection.close()        
 
