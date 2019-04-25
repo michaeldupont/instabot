@@ -73,10 +73,10 @@ def MediaData():
         with open("log4.txt", "w") as fi:
             fi.write("ok_ok_ok" + '\n')
             #fi.write("test long" + str(len(data3["user"])))
-            fi.write("test long1" + str(len(data3)))
+            fi.write("test long1 \t" + str(data3["user_count"]))
             fi.close()
 
-        for user in range(len(data3["user"])):
+        for user in range(data3["user_count"]):
 
             with open("log4.txt", "a") as fi:
                 fi.write("users" + "\n")
