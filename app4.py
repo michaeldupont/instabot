@@ -72,7 +72,7 @@ def MediaData():
         mariadb_connection = mariadb.connect(user=userdb, password=pwddb, database=db)
         with open("log4.txt", "w") as fi:
             fi.write("ok_ok_ok" + '\n')
-            fi.write("test long" + str(len(data3["user"])))
+            #fi.write("test long" + str(len(data3["user"])))
             fi.write("test long1" + str(len(data3)))
             fi.close()
 
