@@ -74,7 +74,12 @@ def MediaData():
             fi.write("ok_ok_ok" + '\n')
             fi.close()
 
-        for user in data3["users"] :
+        for user in data3["users"].keys():
+
+            with open("log4.txt", "a") as fi:
+                fi.write("users" + "\n")
+                fi.write("user": + str(user) + "\n")
+                fi.close()
             for cle,valeur in data3["users"][user].items():
 
                 cursor = mariadb_connection.cursor()
