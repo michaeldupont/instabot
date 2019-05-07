@@ -66,6 +66,10 @@ def MediaData():
 
             for cle,valeur in data3["users"][user].items():
 
+                with open("log5.txt", "a") as fi:
+                    fi.write("i'm here" + "\n")
+                    fi.close()
+
                 datacle = []
                 datavaleur = []
                 datacle.append(cle)
