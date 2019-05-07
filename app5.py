@@ -76,8 +76,8 @@ def MediaData():
                 datavaleur.append(valeur)
 
                 database.insertmedia(mediaID,url,data3["user_count"])
-                database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
-                database.linkMP(mediaID,datavaleur[0])      
+                #database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
+                #database.linkMP(mediaID,datavaleur[0])      
 
     return render_template("index.html",user="succesfully inserted in DB !")
 
