@@ -61,8 +61,8 @@ def MediaData():
         data3 = api.LastJson
         with open("log5.txt", "w") as fi:
             fi.write("mediaID" + "\n")
-            fi.write(int(mediaID) "\n")
-            fi.write(int(data3["user_count"]) "\n")
+            fi.write(str(mediaID) "\n"))
+            fi.write(str(data3["user_count"]) "\n")
             fi.write(str(url) "\n")
             fi.close()
         database.insertmedia(int(mediaID),str(url),int(data3["user_count"])
