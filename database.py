@@ -38,14 +38,9 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute( "INSERT INTO `Media` (`MediaID`, `MediaURL`, `nbr_likers`) \
+    cursor.execute( "INSERT IF NOT EXISTS INTO `Media` (`MediaID`, `MediaURL`, `nbr_likers`) \
                     VALUES (MediaID, MediaURL, nbr_likers) \
                                ")
-
-    with open("log5.txt", "a") as fi:
-        fi.write("i'm here1" + "\n")
-        fi.close()
-
     mariadb_connection.commit()
     mariadb_connection.close()
 

@@ -59,14 +59,21 @@ def MediaData():
     if api.login():
         api.getMediaLikers(mediaID)
         data3 = api.LastJson
+        with open("log5.txt", "w") as fi:
+            fi.write("mediaID" + "\n")
+            fi.write(int(mediaID) "\n")
+            fi.write(int(data3["user_count"]) "\n")
+            fi.write(str(url) "\n")
+            fi.close()
+        database.insertmedia(int(mediaID),str(url),int(data3["user_count"])
                        
         for user in range(data3["user_count"]):
-            # datauser = data3["users"][user]
+            datauser = data3["users"][user]
             # idéalement ne garder que les données qui ne sont pas pk, username, full_name et profilpicture et profileid
 
             for cle,valeur in data3["users"][user].items():
 
-                with open("log5.txt", "w") as fi:
+                with open("log5.txt", "a") as fi:
                     fi.write("cle : valeur" + "\n")
                     fi.write(str(cle) + str(valeur) + "\n")
                     fi.close()
@@ -76,13 +83,7 @@ def MediaData():
                 datacle.append(cle)
                 datavaleur.append(valeur)
 
-                with open("log5.txt", "a") as fi:
-                    fi.write("listes" + "\n")
-                    fi.write(str(datacle[0]) + str(datavaleur[0]) + "\n")
-                    fi.close()
-
-                database.insertmedia(mediaID,url,data3["user_count"])
-                #database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
+                database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
                 #database.linkMP(mediaID,datavaleur[0])      
 
     return render_template("index.html",user="succesfully inserted in DB !")
