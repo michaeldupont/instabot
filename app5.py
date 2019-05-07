@@ -61,7 +61,7 @@ def MediaData():
         data3 = api.LastJson
                        
         for user in range(data3["user_count"]):
-            datauser = data3["users"][user]
+            # datauser = data3["users"][user]
             # idéalement ne garder que les données qui ne sont pas pk, username, full_name et profilpicture et profileid
 
             for cle,valeur in data3["users"][user].items():
