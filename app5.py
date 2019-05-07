@@ -66,7 +66,7 @@ def MediaData():
 
             for cle,valeur in data3["users"][user].items():
 
-                with open("log5.txt", "a") as fi:
+                with open("log5.txt", "w") as fi:
                     fi.write("i'm here" + "\n")
                     fi.close()
 
