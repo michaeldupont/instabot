@@ -65,7 +65,7 @@ def MediaData():
             fi.write(str(data3["user_count"]) + "\n")
             fi.write(str(url) + "\n")
             fi.close()
-        database.insertmedia(int(mediaID),str(url),int(data3["user_count"])
+        database.insertmedia(mediaID,url,data3["user_count"])
                        
         for user in range(data3["user_count"]):
             datauser = data3["users"][user]
