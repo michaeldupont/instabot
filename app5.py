@@ -67,13 +67,19 @@ def MediaData():
             for cle,valeur in data3["users"][user].items():
 
                 with open("log5.txt", "w") as fi:
-                    fi.write("i'm here" + "\n")
+                    fi.write("cle : valeur" + "\n")
+                    fi.write(str(cle) + str(valeur) + "\n")
                     fi.close()
 
                 datacle = []
                 datavaleur = []
                 datacle.append(cle)
                 datavaleur.append(valeur)
+
+                with open("log5.txt", "a") as fi:
+                    fi.write("listes" + "\n")
+                    fi.write(str(datacle[0]) + str(datavaleur[0]) + "\n")
+                    fi.close()
 
                 database.insertmedia(mediaID,url,data3["user_count"])
                 #database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)

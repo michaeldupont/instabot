@@ -39,13 +39,13 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     cursor = mariadb_connection.cursor()
 
     cursor.execute( "INSERT INTO `Media` (`MediaID`, `MediaURL`, `nbr_likers`) \
-                    VALUES (MediaID, MediaURL,nbr_likers) \
+                    VALUES (MediaID, MediaURL, nbr_likers) \
                                ")
 
     with open("log5.txt", "a") as fi:
         fi.write("i'm here1" + "\n")
         fi.close()
-        
+
     mariadb_connection.commit()
     mariadb_connection.close()
 
