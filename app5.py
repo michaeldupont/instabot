@@ -59,12 +59,6 @@ def MediaData():
     if api.login():
         api.getMediaLikers(mediaID)
         data3 = api.LastJson
-        with open("log5.txt", "w") as fi:
-            fi.write("mediaID" + "\n")
-            fi.write(str(mediaID) + "\t" + "type" + "\t" + str(type(mediaID)) + "\n")
-            fi.write(str(data3["user_count"]) + "\n")
-            fi.write(str(url) + "\n")
-            fi.close()
         database.insertmedia(mediaID,url,data3["user_count"])
                        
         for user in range(data3["user_count"]):
@@ -73,15 +67,14 @@ def MediaData():
 
             for cle,valeur in data3["users"][user].items():
 
-                with open("log5.txt", "a") as fi:
-                    fi.write("cle : valeur" + "\n")
-                    fi.write(str(cle) + str(valeur) + "\n")
-                    fi.close()
-
                 datacle = []
                 datavaleur = []
                 datacle.append(cle)
                 datavaleur.append(valeur)
+                with open("log5.txt", "a") as fi:
+                    fi.write("here ! cle : valeur" + "\n")
+                    fi.write(str(cle) + str(valeur) + "\n")
+                    fi.close()
 
                 database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
                 #database.linkMP(mediaID,datavaleur[0])      
