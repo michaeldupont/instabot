@@ -38,8 +38,8 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute( "INSERT IF NOT EXISTS INTO `Media` (`ìd`, `MediaID`, `MediaURL`, `nbr_likers`) \
-                    VALUES (NULL, %s, %s,%s)", (MediaID, MediaURL, nbr_likers) \
+    cursor.execute( "INSERT INTO `Media` (`ìd`, `MediaID`, `MediaURL`, `nbr_likers`) \
+                    VALUES (NULL, %s, %s,%s)", (MediaID, MediaURL, nbr_likers))
                                
     mariadb_connection.commit()
     mariadb_connection.close()
