@@ -38,7 +38,7 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute( "INSERT INTO `Media` (`id`, `MediaID`, `MediaURL`, `nbr_likers`, `nbr_comments`, `create_time`) \
+    cursor.execute( "INSERT IF NOT EXISTS INTO `Media` (`id`, `MediaID`, `MediaURL`, `nbr_likers`, `nbr_comments`, `create_time`) \
                     VALUES (NULL, %s, %s,%s,NULL,NULL)", (MediaID, MediaURL, nbr_likers))
                                
     mariadb_connection.commit()
@@ -55,9 +55,8 @@ def insertpeople(pk,username,full_name,compjson):
     mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
     
-    cursor.execute( "INSERT INTO `People` (`pk`, `username`, `full_name`,`compjson`) \
-                    VALUES (pk, username,full_name,compjson) \
-                               ")
+    cursor.execute( "INSERT INTO `People`(`id`, `pk`, `username`, `full_name`, `compjson`) \
+                    VALUES (NULL,%s, %s,%s,%s)", (pk, username, full_name, compjson))
     mariadb_connection.commit()
     mariadb_connection.close()
 
