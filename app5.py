@@ -61,7 +61,7 @@ def MediaData():
         data3 = api.LastJson
         with open("log5.txt", "w") as fi:
             fi.write("mediaID" + "\n")
-            fi.write(str(mediaID) + "\n")
+            fi.write(str(mediaID) + "\t" + "type" + "\t" + type(mediaID) + "\n")
             fi.write(str(data3["user_count"]) + "\n")
             fi.write(str(url) + "\n")
             fi.close()
