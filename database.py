@@ -38,7 +38,7 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute( "INSERT INTO `Media` (`ìd`, `MediaID`, `MediaURL`, `nbr_likers`,`nbr_comments`, `create_time`) \
+    cursor.execute( "INSERT INTO `Media` (`id`, `MediaID`, `MediaURL`, `nbr_likers`, `nbr_comments`, `create_time`) \
                     VALUES (NULL, %s, %s,%s,NULL,NULL)", (MediaID, MediaURL, nbr_likers))
                                
     mariadb_connection.commit()
