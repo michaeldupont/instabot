@@ -71,9 +71,12 @@ def MediaData():
                 datavaleur = []
                 datacle.append(cle)
                 datavaleur.append(valeur)
-                with open("log5.txt", "a") as fi:
+                with open("log5.txt", "w") as fi:
                     fi.write("here ! cle : valeur" + "\n")
                     fi.write(str(cle) + str(valeur) + "\n")
+                    fi.write(str(datavaleur[0]) + "\n")
+                    fi.write(str(datavaleur[1]) + "\n")
+                    fi.write(str(datauser) + "\n")    
                     fi.close()
 
                 database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
