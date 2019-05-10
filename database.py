@@ -40,7 +40,7 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
 
     cursor.execute( "INSERT INTO `Media` (`id`, `MediaID`, `MediaURL`, `nbr_likers`, `nbr_comments`, `create_time`) \
                     VALUES (NULL, %s, %s,%s,NULL,NULL) \
-                    WHERE NOT EXISTS (SELECT `MediaID` FROM `Media` WHERE `MediaID` = MediaID)", (MediaID, MediaURL, nbr_likers))
+                    WHERE NOT EXISTS (SELECT * FROM `Media` WHERE `MediaID` = MediaID)", (MediaID, MediaURL, nbr_likers))
                                
     mariadb_connection.commit()
     mariadb_connection.close()
