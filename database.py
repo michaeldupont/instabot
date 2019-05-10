@@ -31,11 +31,11 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     with open("config.json","r") as fichier:
         conf = json.load(fichier) 
     
-    username = conf["DB"]["USER"]
+    userdb = conf["DB"]["USER"]
     pwd = conf["DB"]["PASSWORD"]
     db = conf["DB"]["DATABASE"]
 
-    mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
+    mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
     cursor.execute( "INSERT INTO `Media` (`id`, `MediaID`, `MediaURL`, `nbr_likers`, `nbr_comments`, `create_time`) \
@@ -48,11 +48,11 @@ def insertpeople(pk,username,full_name,compjson):
     with open("config.json","r") as fichier:
         conf = json.load(fichier) 
     
-    username = conf["DB"]["USER"]
+    userdb = conf["DB"]["USER"]
     pwd = conf["DB"]["PASSWORD"]
     db = conf["DB"]["DATABASE"]
 
-    mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
+    mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
     
     cursor.execute( "INSERT INTO `People`(`id`, `pk`, `username`, `full_name`, `compjson`) \
@@ -65,11 +65,11 @@ def linkMP(MediaID, pk):
     with open("config.json","r") as fichier:
         conf = json.load(fichier) 
     
-    username = conf["DB"]["USER"]
+    userdb = conf["DB"]["USER"]
     pwd = conf["DB"]["PASSWORD"]
     db = conf["DB"]["DATABASE"]
 
-    mariadb_connection = mariadb.connect(user= username, password=pwd, database=db)
+    mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
     
     cursor.execute( "INSERT INTO Media_likers () \
