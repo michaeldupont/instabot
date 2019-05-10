@@ -63,15 +63,15 @@ def MediaData():
                        
         for user in range(data3["user_count"]):
             datauser = data3["users"][user]
+            datacle = []
+            datavaleur = []
             # idéalement ne garder que les données qui ne sont pas pk, username, full_name et profilpicture et profileid
 
             for cle,valeur in data3["users"][user].items():
-
-                datacle = []
-                datavaleur = []
                 datacle.append(cle)
                 datavaleur.append(valeur)
-                with open("log5.txt", "w") as fi:
+            
+            with open("log5.txt", "w") as fi:
                     fi.write("here ! cle : valeur" + "\n")
                     fi.write(str(cle) + str(valeur) + "\n")
                     fi.write(str(datavaleur[0]) + "\n")
@@ -79,8 +79,8 @@ def MediaData():
                     fi.write(str(datauser) + "\n")    
                     fi.close()
 
-                database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
-                #database.linkMP(mediaID,datavaleur[0])      
+            database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
+            #database.linkMP(mediaID,datavaleur[0])   linker la table avec les clés primaires ??   attention bdd change donc à mofdifier
 
     return render_template("index.html",user="succesfully inserted in DB !")
 
