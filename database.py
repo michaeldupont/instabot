@@ -56,7 +56,7 @@ def insertpeople(pk,username,full_name,compjson):
     cursor = mariadb_connection.cursor()
     
     cursor.execute( "INSERT INTO `People`(`id`, `pk`, `username`, `full_name`, `compjson`) \
-                    VALUES (NULL,%s, %s,%s,NULL)", (pk, username, full_name))
+                    VALUES (NULL,%s, %s,%s,NULL)", (pk, username, full_name,compjson))
     mariadb_connection.commit()
     mariadb_connection.close()
 
