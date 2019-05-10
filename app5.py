@@ -51,10 +51,10 @@ def MediaData():
 
     with open("config.json","r") as fichier:
         conf = json.load(fichier)
-    user = conf["INSTAGRAM"]["USER"]
+    userdb = conf["INSTAGRAM"]["USER"]
     pwd = conf["INSTAGRAM"]["PASSWORD"]
 
-    api = InstagramAPI(user,pwd)
+    api = InstagramAPI(userdb,pwd)
 
     if api.login():
         api.getMediaLikers(mediaID)
@@ -76,7 +76,8 @@ def MediaData():
                     fi.write(str(cle) + str(valeur) + "\n")
                     fi.write(str(datavaleur[0]) + "\n")
                     fi.write(str(datavaleur[1]) + "\n")
-                    fi.write(str(datauser) + "\n")    
+                    fi.write(str(datauser) + "\n")
+                    fi.write(str(datauser["pk"]) + "\n")        
                     fi.close()
 
             database.insertpeople(datavaleur[0],datavaleur[1],datavaleur[2],datauser)
