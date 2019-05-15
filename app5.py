@@ -46,7 +46,7 @@ def data():
     #    data = json.load(fichier)
     
         with open("getSelfUserFeed.json", "w") as f:
-            f.write(json.dumps(data1, indent=4))
+            f.write(json.dumps(data, indent=4))
 
 
         with open("log7.txt", "a") as fi:
