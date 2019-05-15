@@ -41,10 +41,16 @@ def data():
     #test sur le fichier JSON déjà loggé pour ne pas slliciter l'API
     with open("getSelfUserFeed.json",r) as fichier:
         data = json.load(fichier)
+    
+    with open("log7.txt", "w") as fi:
+        fi.write("ok" + "\n")
+        fi.write(str(data["items"]) + "\n")
+        fi.write(str(data["next_max_id"]) + "\n")        
+        fi.close()
 
     # insertion des media dans la table media
     for item in data["items"]:
-        with open("log7.txt", "w") as fi:
+        with open("log7.txt", "a") as fi:
                 fi.write("récupération d'une info dans le JSON" + "\n")
                 fi.write(str(item["pk"]) + "\n")
                 fi.write(str(data["next_max_id"]) + "\n")        
