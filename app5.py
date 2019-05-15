@@ -33,16 +33,24 @@ def data():
     user = conf["INSTAGRAM"]["USER"]
     pwd = conf["INSTAGRAM"]["PASSWORD"]
     api = InstagramAPI(user,pwd)
-    url = "https://www.instagram.com/p/BwToC2vnz9H/"
-    mediaID = fonctions.get_media_id(url)
+    
+    # récupération des medias à changer pour les récupérer tous
+    #api.getSelfUserFeed()
+    #data = api.LastJson
 
-    if api.login():
-        api.getMediaLikers(mediaID)
-        data3 = api.LastJson
-        with open("data3.json", "w") as f:
-            f.write(json.dumps(data3, indent=4))
+    #test sur le fichier JSON déjà loggé pour ne pas slliciter l'API
+    with open("getSelfUserFeed.json",r) as fichier:
+        data = json.load(fichier)
+
+    # insertion des media dans la table media
+    for item in data["items"]:
+        with open("log7.txt", "w") as fi:
+                fi.write("récupération d'une info dans le JSON" + "\n")
+                fi.write(str(item["pk"]) + "\n")
+                fi.write(str(data["next_max_id"]) + "\n")        
+                fi.close()
         
-    return render_template("index.html")
+    return render_template("index.html", user="va voir le log7.txt")
 
 @MyApp.route("/bytel")
 def MediaData():
