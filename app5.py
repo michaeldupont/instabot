@@ -26,6 +26,14 @@ def show_user_profile(username):
     # show the user profile for that user
     return 'User %s' % username
 
+@MyApp.route('/read')
+def read():
+    id = 25
+    result1 = database.readmedia(id)
+    
+    # show the user profile for that user
+    return 'User %s' % result1
+
 @MyApp.route("/data")
 def data():
     with open("config.json","r") as fichier:
@@ -63,17 +71,7 @@ def data():
             var = item["location"]["name"]
         else:
             var = "0"
-
-        with open("log8.txt", "a") as fi:
-            fi.write("récupération d'une info dans le JSON" + "\n")
-            fi.write(str(item["id"]) + "\n")
-            fi.write(str(item["image_versions2"]["candidates"][0]["url"]) + "\n")
-            fi.write(str(item["like_count"]) + "\n")
-            fi.write(str(item["comment_count"]) + "\n")
-            fi.write(str(item["pk"]) + "\n")        
-            fi.write("var" +str(var) + "\n")
-            fi.close()
-        
+       
         database.insertmedia(item["id"], item["image_versions2"]["candidates"][0]["url"], item["like_count"], item["comment_count"], item["pk"], var)
               
     return render_template("index.html", user="va voir le log7.txt")

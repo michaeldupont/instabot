@@ -44,6 +44,25 @@ def insertmedia(MediaID, MediaURL, likeCount, commentCount, pk, lieu):
     mariadb_connection.commit()
     mariadb_connection.close()
 
+def readmedia(MediaID):
+    with open("config.json","r") as fichier:
+        conf = json.load(fichier) 
+    
+    userdb = conf["DB"]["USER"]
+    pwd = conf["DB"]["PASSWORD"]
+    db = conf["DB"]["DATABASE"]
+
+    sql = "SELECT  * from `Media` where `id`= %s "
+
+    mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
+    cursor = mariadb_connection.cursor()
+
+    result = cursor.execute( sql, MediaID)
+                               
+    mariadb_connection.commit()
+    mariadb_connection.close()
+    return result
+
 def insertpeople(pk,username,full_name,compjson):
     with open("config.json","r") as fichier:
         conf = json.load(fichier) 
