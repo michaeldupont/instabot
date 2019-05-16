@@ -54,11 +54,14 @@ def data():
     #        fi.write(str(data["items"]) + "\n")
     #        fi.write(str(data["next_max_id"]) + "\n")        
     #        fi.close()
-    i=0
+
     # insertion des media dans la table media
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
         
+        if item["location"]["name"] not in item:
+            item["location"]["name"] ="NULL"
+
         with open("log8.txt", "a") as fi:
             fi.write("récupération d'une info dans le JSON" + str(i) + "\n")
             fi.write(str(item["id"]) + "\n")
@@ -69,7 +72,6 @@ def data():
             fi.write(str(item["location"]["name"]) + "\n")
             fi.close()
         
-        i += 1
         database.insertmedia(item["id"], item["image_versions2"]["candidates"][0]["url"], item["like_count"], item["comment_count"], item["pk"], item["location"]["name"])
               
     return render_template("index.html", user="va voir le log7.txt")
