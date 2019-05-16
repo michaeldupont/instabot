@@ -58,7 +58,7 @@ def data():
     # insertion des media dans la table media
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
-        with open("log7.txt", "a") as fi:
+        with open("log8.txt", "w") as fi:
             fi.write("récupération d'une info dans le JSON" + "\n")
             fi.write(str(item["pk"]) + "\n")
             fi.write(str(item["image_versions2"]["candidates"][0]["url"]) + "\n")        
