@@ -27,7 +27,7 @@ def inputdb(media_likers):
     mariadb_connection.close()
 
 
-def insertmedia(MediaID, MediaURL, nbr_likers):
+def insertmedia(MediaID, MediaURL, likeCount, commentCount, pk, lieu):
     with open("config.json","r") as fichier:
         conf = json.load(fichier) 
     
@@ -38,8 +38,8 @@ def insertmedia(MediaID, MediaURL, nbr_likers):
     mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute( "INSERT IGNORE INTO `Media` (`id`, `MediaID`, `MediaURL`, `nbr_likers`, `nbr_comments`, `create_time`) \
-                    VALUES (NULL, %s, %s,%s,NULL,NULL)", (MediaID, MediaURL, nbr_likers))
+    cursor.execute( "INSERT IGNORE INTO `Media` (`id`, `MediaID`, `MediaURL`, `likeCount`, `commentCount`, `createTime`,`pk`,`lieu`,`updateTime`) \
+                    VALUES (NULL, %s, %s,%s,%s,NULL,%s,%s,NULL)", (MediaID, MediaURL, likeCount, commentCount, createTime, pk, lieu))
                                
     mariadb_connection.commit()
     mariadb_connection.close()

@@ -34,35 +34,39 @@ def data():
     pwd = conf["INSTAGRAM"]["PASSWORD"]
     api = InstagramAPI(user,pwd)
     
-    if api.login():
+    #if api.login():
     # récupération des medias à changer pour les récupérer tous
-        api.getSelfUserFeed()
-        data = api.LastJson
-        with open("log7.txt", "w") as fi:
-            fi.write("ok" + "\n")
+    #    api.getSelfUserFeed()
+    #    data = api.LastJson
+    #    with open("log7.txt", "w") as fi:
+    #        fi.write("ok" + "\n")
 
     # test sur le fichier JSON déjà loggé pour ne pas slliciter l'API
-    # with open("getSelfUserFeed.json",r) as fichier:
-    #    data = json.load(fichier)
+    with open("getSelfUserFeed.json",r) as fichier:
+        data = json.load(fichier)
     
-        with open("getSelfUserFeed.json", "w") as f:
-            f.write(json.dumps(data, indent=4))
+    #    with open("getSelfUserFeed.json", "w") as f:
+    #        f.write(json.dumps(data, indent=4))
 
 
-        with open("log7.txt", "a") as fi:
-            fi.write("ok" + "\n")
-            fi.write(str(data["items"]) + "\n")
-            fi.write(str(data["next_max_id"]) + "\n")        
-            fi.close()
+    #    with open("log7.txt", "a") as fi:
+    #        fi.write("ok" + "\n")
+    #        fi.write(str(data["items"]) + "\n")
+    #        fi.write(str(data["next_max_id"]) + "\n")        
+    #        fi.close()
 
     # insertion des media dans la table media
-        for item in data["items"]:
-            with open("log7.txt", "a") as fi:
-                fi.write("récupération d'une info dans le JSON" + "\n")
-                fi.write(str(item["pk"]) + "\n")
-                fi.write(str(data["next_max_id"]) + "\n")        
-                fi.close()
+    for item in data["items"]:
+        #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
+        with open("log7.txt", "a") as fi:
+            fi.write("récupération d'une info dans le JSON" + "\n")
+            fi.write(str(item["pk"]) + "\n")
+            fi.write(str(item["image_versions2"]["candidates"][0]["url"]) + "\n")        
+            fi.close()
         
+        
+        database.insertmedia(item["id"], item["image_versions2"]["candidates"][0]["url"], item["like_count"], item["comment_count"], item["pk"], item["location"]["name"])
+              
     return render_template("index.html", user="va voir le log7.txt")
 
 @MyApp.route("/bytel")
