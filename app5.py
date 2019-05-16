@@ -59,7 +59,10 @@ def data():
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
         
-        var = item.get("location", "0")
+        if "location" in item:
+            var = item["location"]["name"]
+        else :
+            var = "0"
 
         with open("log8.txt", "a") as fi:
             fi.write("récupération d'une info dans le JSON" + str(i) + "\n")
@@ -68,7 +71,6 @@ def data():
             fi.write(str(item["like_count"]) + "\n")
             fi.write(str(item["comment_count"]) + "\n")
             fi.write(str(item["pk"]) + "\n")        
-            fi.write("regular" +str(item["location"]["name"]) + "\n")
             fi.write("var" +str(var) + "\n")
             fi.close()
         
