@@ -59,7 +59,7 @@ def data():
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
         
-        if "location" in item:
+        if location in item:
             var = item["location"]["name"]
         else :
             var = "0"
