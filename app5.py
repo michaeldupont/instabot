@@ -59,10 +59,7 @@ def data():
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
         
-        if item["location"]["name"]:
-            var = item["location"]["name"]
-        else:
-            item["location"]["name"] ="NULL"
+        var = item.get("location", "0")
 
         with open("log8.txt", "a") as fi:
             fi.write("récupération d'une info dans le JSON" + str(i) + "\n")
@@ -75,7 +72,7 @@ def data():
             fi.write("var" +str(var) + "\n")
             fi.close()
         
-        database.insertmedia(item["id"], item["image_versions2"]["candidates"][0]["url"], item["like_count"], item["comment_count"], item["pk"], item["location"]["name"])
+        database.insertmedia(item["id"], item["image_versions2"]["candidates"][0]["url"], item["like_count"], item["comment_count"], item["pk"], var)
               
     return render_template("index.html", user="va voir le log7.txt")
 
