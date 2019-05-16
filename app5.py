@@ -59,9 +59,9 @@ def data():
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
         
-        if location in item:
+        if "location" in item.keys():
             var = item["location"]["name"]
-        else :
+        else:
             var = "0"
 
         with open("log8.txt", "a") as fi:
