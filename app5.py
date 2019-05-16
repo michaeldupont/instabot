@@ -54,17 +54,22 @@ def data():
     #        fi.write(str(data["items"]) + "\n")
     #        fi.write(str(data["next_max_id"]) + "\n")        
     #        fi.close()
-
+    i=0
     # insertion des media dans la table media
     for item in data["items"]:
         #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
-        with open("log8.txt", "w") as fi:
-            fi.write("récupération d'une info dans le JSON" + "\n")
-            fi.write(str(item["pk"]) + "\n")
-            fi.write(str(item["image_versions2"]["candidates"][0]["url"]) + "\n")        
+        
+        with open("log8.txt", "a") as fi:
+            fi.write("récupération d'une info dans le JSON" + i + "\n")
+            fi.write(str(item["id"]) + "\n")
+            fi.write(str(item["image_versions2"]["candidates"][0]["url"]) + "\n")
+            fi.write(str(item["like_count"]) + "\n")
+            fi.write(str(item["comment_count"]) + "\n")
+            fi.write(str(item["pk"]) + "\n")        
+            fi.write(str(item["location"]["name"]) + "\n")
             fi.close()
         
-        
+        i += 1
         database.insertmedia(item["id"], item["image_versions2"]["candidates"][0]["url"], item["like_count"], item["comment_count"], item["pk"], item["location"]["name"])
               
     return render_template("index.html", user="va voir le log7.txt")
