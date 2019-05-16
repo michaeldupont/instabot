@@ -39,7 +39,7 @@ def insertmedia(MediaID, MediaURL, likeCount, commentCount, pk, lieu):
     cursor = mariadb_connection.cursor()
 
     cursor.execute( "INSERT IGNORE INTO `Media` (`id`, `MediaID`, `MediaURL`, `likeCount`, `commentCount`, `createTime`,`pk`,`lieu`,`updateTime`) \
-                    VALUES (NULL, %s, %s,%s,%s,NULL,%s,%s,NULL)", (MediaID, MediaURL, likeCount, commentCount, createTime, pk, lieu))
+                    VALUES (NULL, %s, %s,%s,%s,NULL,%s,%s,NULL)", (MediaID, MediaURL, likeCount, commentCount, pk, lieu))
                                
     mariadb_connection.commit()
     mariadb_connection.close()
