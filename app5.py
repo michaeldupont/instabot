@@ -28,8 +28,18 @@ def show_user_profile(username):
 
 @MyApp.route('/read')
 def read():
-    id = 25
+    id = 30
+
+    with open("log9.txt", "w") as fi:
+            fi.write("ID" + "\n")
+            fi.write(str(id) + "\t" + "type" + "\t" + str(type(id)) + "\n")
+            fi.close()
     result1 = database.readmedia(id)
+
+    with open("log9.txt", "w") as fi:
+            fi.write("result1" + "\n")
+            fi.write(str(result1) + "\t" + "type" + "\t" + str(type(result1)) + "\n")
+            fi.close()
     
     # show the user profile for that user
     return 'User %s' % result1
