@@ -57,7 +57,7 @@ def readmedia(MediaID):
     mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute("SELECT * from `Media` ")
+    cursor.execute(sql)
     result = cursor.fetchall()
                                
     mariadb_connection.close()
