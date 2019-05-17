@@ -39,7 +39,7 @@ def data():
     api = InstagramAPI(user,pwd)
     
     if api.login():
-    # recuperation des medias à changer pour les recuperer tous
+    # recuperation des medias changer pour les recuperer tous
         api.getSelfUserFeed()
         data = api.LastJson
         with open("log7.txt", "w") as fi:
