@@ -52,7 +52,7 @@ def readmedia(MediaID):
     pwd = conf["DB"]["PASSWORD"]
     db = conf["DB"]["DATABASE"]
 
-    sql = "SELECT * from `Media` WHERE `id`= '%s' "
+    sql = "SELECT * from `Media` WHERE `id`= 30 "
 
     with open("log9.txt", "a") as fi:
             fi.write("sql" + "\n")
