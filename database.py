@@ -62,7 +62,7 @@ def readmedia(MediaID):
     mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute(sql,MediaID)
+    cursor.execute(sql,30)
     result = cursor.fetchall()
     with open("log9.txt", "a") as fi:
             fi.write("result" + "\n")
