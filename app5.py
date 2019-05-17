@@ -28,15 +28,7 @@ def read():
     id = 30
     result1 = database.readmedia(id)
     result2 = database.readAllMedia()
-
-    df = pd.DataFrame(result2, columns=["id", "MediaID", "MediaURL", "likeCount", "commentCount", "createTime","pk","lieu","updateTime"])
-    x = df.MediaID
-    y = df.likeCount
-    plt.scatter(x, y)
-    plt.savefig("first.png")
-
-    return render_template("media.html", variable=str(result1["MediaURL"]))
-
+    return render_template("index.html")
 
 @MyApp.route("/data")
 def data():
@@ -69,7 +61,7 @@ def data():
 
     # insertion des media dans la table media
     for item in data["items"]:
-        #on insere pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
+        #on insere pour le moment mais il faudrait d'abord lire en base pour comparer si element existe ou pas ... s'il existe, faut il update ?
         
         if "location" in item:
             var = item["location"]["name"]
