@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: ascii -*-
+
 from flask import Flask, render_template,url_for, session
 from InstagramAPI import InstagramAPI
 import json
