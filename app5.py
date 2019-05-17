@@ -1,4 +1,3 @@
-# coding: utf-8
 from flask import Flask, render_template,url_for, session
 from InstagramAPI import InstagramAPI
 import json
@@ -50,13 +49,13 @@ def data():
     api = InstagramAPI(user,pwd)
     
     if api.login():
-    # récupération des medias à changer pour les récupérer tous
+    # recuperation des medias à changer pour les recuperer tous
         api.getSelfUserFeed()
         data = api.LastJson
         with open("log7.txt", "w") as fi:
             fi.write("ok" + "\n")
 
-    # test sur le fichier JSON déjà loggé pour ne pas solliciter l'API
+    # test sur le fichier JSON déjà logge pour ne pas solliciter l'API
     with open("getSelfUserFeed.json","r") as fichier:
         data = json.load(fichier)
     
@@ -72,7 +71,7 @@ def data():
 
     # insertion des media dans la table media
     for item in data["items"]:
-        #on insère pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
+        #on insere pour le moment mais il faudrait d'abord lire en base pour comparer si élément existe ou pas ... s'il existe, faut il update ?
         
         if "location" in item:
             var = item["location"]["name"]
