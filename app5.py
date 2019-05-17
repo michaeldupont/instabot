@@ -4,8 +4,8 @@ import json
 import fonctions
 import os
 import database
-#import pandas as pd
-#import matplotlib.pyplot as plt
+import pandas as pd
+import matplotlib.pyplot as plt
 
 MyApp = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
@@ -31,7 +31,7 @@ def read():
     result1 = database.readmedia(id)
     result2 = database.readAllMedia()
 
-    df = pd.DataFrame(result2, columns=['id', 'MediaID', 'MediaURL', 'likeCount', 'commentCount', 'createTime','pk','lieu','updateTime'])
+    df = pd.DataFrame(result2, columns=["id", "MediaID", "MediaURL", "likeCount", "commentCount", "createTime","pk","lieu","updateTime"])
     x = df.MediaID
     y = df.likeCount
     plt.scatter(x, y)
