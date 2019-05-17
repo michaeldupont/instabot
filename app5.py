@@ -99,7 +99,7 @@ def MediaData():
                 fi.close()
 
             database.insertpeople(datauser["pk"],datauser["username"],datauser["full_name"],datauser)
-            #database.linkMP(mediaID,datavaleur[0])   linker la table avec les clés primaires ??   attention bdd change donc à mofdifier
+            #database.linkMP(mediaID,datavaleur[0])   linker la table avec les cles primaires ??   attention bdd change donc modifier
 
     return render_template("index.html",user="succesfully inserted in DB !")
 
