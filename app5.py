@@ -45,7 +45,7 @@ def data():
         with open("log7.txt", "w") as fi:
             fi.write("ok" + "\n")
 
-    # test sur le fichier JSON déjà logge pour ne pas solliciter l'API
+    # test sur le fichier JSON deja logge pour ne pas solliciter l'API
     with open("getSelfUserFeed.json","r") as fichier:
         data = json.load(fichier)
     
