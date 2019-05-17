@@ -1,3 +1,5 @@
+
+# This Python file uses the following encoding: utf-8
 # last update : mariaDB 10.2 and JSON store JSON object in mariaDB 
 # connection à la base avec mysql --user=chnordfr --password= 'lememequedans la console'  
 
