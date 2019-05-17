@@ -52,22 +52,13 @@ def readmedia(MediaID):
     pwd = conf["DB"]["PASSWORD"]
     db = conf["DB"]["DATABASE"]
 
-    sql = "SELECT * from `Media` WHERE `id`= " + str(MediaID)
-
-    with open("log9.txt", "a") as fi:
-            fi.write("sql" + "\n")
-            fi.write(str(sql))
-            fi.close()
+    sql = "SELECT * from `Media` WHERE `id`= '%s'" 
 
     mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
     cursor = mariadb_connection.cursor()
 
-    cursor.execute(sql,30)
+    cursor.execute(sql, str(MediaID))
     result = cursor.fetchall()
-    with open("log9.txt", "a") as fi:
-            fi.write("result" + "\n")
-            fi.write(str(result) + "\t" + "type" + "\t" + str(type(result)) + "\n")
-            fi.close()
                                
     mariadb_connection.close()
     return result
