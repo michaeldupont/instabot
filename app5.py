@@ -48,12 +48,12 @@ def data():
     pwd = conf["INSTAGRAM"]["PASSWORD"]
     api = InstagramAPI(user,pwd)
     
-    #if api.login():
+    if api.login():
     # récupération des medias à changer pour les récupérer tous
-    #    api.getSelfUserFeed()
-    #    data = api.LastJson
-    #    with open("log7.txt", "w") as fi:
-    #        fi.write("ok" + "\n")
+        api.getSelfUserFeed()
+        data = api.LastJson
+        with open("log7.txt", "w") as fi:
+            fi.write("ok" + "\n")
 
     # test sur le fichier JSON déjà loggé pour ne pas solliciter l'API
     with open("getSelfUserFeed.json","r") as fichier:
