@@ -36,7 +36,7 @@ def read():
             fi.close()
     result1 = database.readmedia(id)
 
-    with open("log9.txt", "w") as fi:
+    with open("log9.txt", "a") as fi:
             fi.write("result1" + "\n")
             fi.write(str(result1) + "\t" + "type" + "\t" + str(type(result1)) + "\n")
             fi.close()
