@@ -1,14 +1,11 @@
-#!/usr/bin/python
-# -*- coding: ascii -*-
-
 from flask import Flask, render_template,url_for, session
 from InstagramAPI import InstagramAPI
 import json
 import fonctions
 import os
 import database
-import pandas as pd
-import matplotlib.pyplot as plt
+#import pandas as pd
+#import matplotlib.pyplot as plt
 
 MyApp = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
