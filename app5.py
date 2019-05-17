@@ -7,6 +7,8 @@ import json
 import fonctions
 import os
 import database
+import pandas as pd
+import matplotlib.pyplot as plt
 
 MyApp = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
@@ -30,9 +32,16 @@ def show_user_profile(username):
 def read():
     id = 30
     result1 = database.readmedia(id)
+    result2 = database.readAllMedia()
 
-    # show the user profile for that user
-    return 'User %s' % result1
+    df = pd.DataFrame(result2, columns=['id', 'MediaID', 'MediaURL', 'likeCount', 'commentCount', 'createTime','pk','lieu','updateTime'])
+    x = df.MediaID
+    y = df.likeCount
+    plt.scatter(x, y)
+    plt.savefig("first.png")
+
+    return render_template("media.html", image=str(result1["MediaURL"]))
+
 
 @MyApp.route("/data")
 def data():

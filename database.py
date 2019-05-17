@@ -63,6 +63,25 @@ def readmedia(MediaID):
     mariadb_connection.close()
     return result
 
+def readAllMedia():
+    with open("config.json","r") as fichier:
+        conf = json.load(fichier) 
+    
+    userdb = conf["DB"]["USER"]
+    pwd = conf["DB"]["PASSWORD"]
+    db = conf["DB"]["DATABASE"]
+
+    sql = "SELECT * from `Media`" 
+
+    mariadb_connection = mariadb.connect(user= userdb, password=pwd, database=db)
+    cursor = mariadb_connection.cursor()
+
+    cursor.execute(sql)
+    result = cursor.fetchall()
+                               
+    mariadb_connection.close()
+    return result
+
 def insertpeople(pk,username,full_name,compjson):
     with open("config.json","r") as fichier:
         conf = json.load(fichier) 
