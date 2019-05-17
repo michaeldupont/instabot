@@ -40,7 +40,7 @@ def read():
     plt.scatter(x, y)
     plt.savefig("first.png")
 
-    return render_template("media.html", image=str(result1["MediaURL"]))
+    return render_template("media.html", variable=str(result1["MediaURL"]))
 
 
 @MyApp.route("/data")
@@ -58,7 +58,7 @@ def data():
     #    with open("log7.txt", "w") as fi:
     #        fi.write("ok" + "\n")
 
-    # test sur le fichier JSON déjà loggé pour ne pas slliciter l'API
+    # test sur le fichier JSON déjà loggé pour ne pas solliciter l'API
     with open("getSelfUserFeed.json","r") as fichier:
         data = json.load(fichier)
     
@@ -100,7 +100,7 @@ def MediaData():
     if api.login():
         api.getMediaLikers(mediaID)
         data3 = api.LastJson
-        database.insertmedia(mediaID,url,data3["user_count"])
+        # database.insertmedia(mediaID,url,data3["user_count"])
                        
         for user in range(data3["user_count"]):
             datauser = data3["users"][user]
