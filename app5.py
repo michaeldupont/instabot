@@ -40,10 +40,11 @@ def read():
     with open("log10.txt", "a") as fi:
             fi.write("ok" + "\n")
             fi.write(str(result1) + "\n")
-            fi.write(str(result1["MediaURL"]) + "\n")        
+            fi.write(str(result1[2]) + "\n")
+            fi.write(str(result1[0][2]) + "\n")        
             fi.close()
 
-    return render_template("media.html", image1=str(result1["MediaURL"]))
+    return render_template("media.html", image1=str(result1[0][2]))
 
 @MyApp.route("/data")
 def data():
