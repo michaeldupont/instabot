@@ -37,14 +37,14 @@ def read():
     plt.scatter(x, y)
     plt.savefig("first.png")
 
-    with open("log10.txt", "a") as fi:
+    with open("log10.txt", "w") as fi:
             fi.write("ok" + "\n")
             fi.write(str(result1) + "\n")
-            fi.write(str(result1[2]) + "\n")
+            fi.write(str(result1[0]) + "\n")
             fi.write(str(result1[0][2]) + "\n")        
             fi.close()
 
-    return render_template("media.html", image1=str(result1[0][2]))
+    return render_template("media.html", image1=result1[0][2])
 
 @MyApp.route("/data")
 def data():
