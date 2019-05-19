@@ -39,6 +39,7 @@ def read():
 
     with open("log10.txt", "a") as fi:
             fi.write("ok" + "\n")
+            fi.write(str(result1) + "\n")
             fi.write(str(result1["MediaURL"]) + "\n")        
             fi.close()
 
