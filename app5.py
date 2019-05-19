@@ -37,7 +37,7 @@ def read():
     plt.scatter(x, y)
     plt.savefig("first.png")
 
-    return render_template("media.html", variable=str(result1["MediaURL"]))
+    return render_template("media.html", image1=str(result1["MediaURL"]))
 
 @MyApp.route("/data")
 def data():
