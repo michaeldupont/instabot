@@ -18,7 +18,7 @@ def hello():
         conf = json.load(fichier) 
     username = conf["INSTAGRAM"]["USER"]
     # 
-    return render_template("index.html", user=username)
+    return send_from_directory('./angular/', 'index.html')
 
 @MyApp.route('/user/<username>')
 def show_user_profile(username):
